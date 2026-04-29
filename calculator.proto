@@ -1,0 +1,29 @@
+syntax = "proto3";
+package calculator;
+
+//Definisco il servizio calcolatrice, che contiene le operazioni
+
+service Calculator {
+  rpc Add(BinaryOperation) returns (Result) {}
+
+  rpc Subtract(BinaryOperation) returns (Result) {}
+
+  rpc Multiply(BinaryOperation) returns (Result) {}
+
+  rpc Divide(BinaryOperation) returns (Result) {}
+}
+
+//Definiamo poi i tipi di messaggi
+
+//Messaggio che contiene gli operandi da passare con la funzione
+//Con i rispettivi id, ovviamente interi a 4 byte
+message BinaryOperation {
+  int32 operand1 = 1;
+  int32 operand2 = 2;
+}
+
+//Risultato da restituire al Client
+message Result {
+  double result = 1;
+  string error = 2; //Eventuali errori matematici
+}
